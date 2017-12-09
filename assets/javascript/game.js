@@ -117,7 +117,7 @@ function heroClick() {
 }
 
 function chooseHero() {
-
+	character
 }
 
 //--End function definitions--------------------------------------//
