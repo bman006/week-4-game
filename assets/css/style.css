@@ -1,13 +1,27 @@
 body {}
+
 header {}
+
 .container {}
+
 .heroes {}
 .heroes img {
+	margin: 0 10px;
 	height: 130px;
 }
+.heroes img:hover {
+	height: 110%;
+}
+.heroes img:focus, .heroes img:active {
+	height: 120%;
+}
+
 .battlefield {
 	margin: 30px 0 30px 0;
+	padding: 15px 30px;
+	border: 2px solid #000000;
 }
+
 .hero-position {
 	height:200px;
 	width: 200px;
@@ -16,6 +30,10 @@ header {}
 }
 .attacker {}
 .middle-of-the-battlefield {}
-.defender {}
+.defender {
+	float: right;
+}
+
 .graveyard {}
+
 footer {}
