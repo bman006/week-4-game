@@ -2,9 +2,20 @@ body {}
 header {}
 .container {}
 .heroes {}
-.battlefield {}
-.defender {}
-.middle-of-the-battlefield {}
+.heroes img {
+	height: 130px;
+}
+.battlefield {
+	margin: 30px 0 30px 0;
+}
+.hero-position {
+	height:200px;
+	width: 200px;
+	border: 2px dashed #000000;
+
+}
 .attacker {}
+.middle-of-the-battlefield {}
+.defender {}
 .graveyard {}
 footer {}
