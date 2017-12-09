@@ -85,19 +85,44 @@ var character = [
 		'is-alive': 				true
 	}
 ]
+
+var isUserCharacterChosen = false;
+
 //--End global variables------------------------------------------//
 //--Function definitions------------------------------------------//
-function chooseYourCharacter() {
-	$(".heroes").append("<h2>");
-	$(".heroes h2").text("Choose your character!");
+
+//Display text instruction user to choose character, and load heroes (images and on click events)
+function loadheroes() {
+	$('.heroes').append('<h2>');
+	$('.heroes h2').text('Choose your character!');
+
 	//display all pictures of characters
 	for (var i=0; i < character.length; i++) {
-		$(".heroes").append('<img src="' + character[i]['menu-picture-url'] + '"">');
+		var heroPic = $('<img>');
+		heroPic.attr('src', character[i]['menu-picture-url']);
+		heroPic.on("click", function() {heroClick()})
+		$('.heroes').append(heroPic);
 	}
 }
+
+//Function called whenever one of the character pictures is clicked for choosing the user character or next enemy
+function heroClick() {
+	if (isUserCharacterChosen === false) {
+		chooseHero();
+		isUserCharacterChosen = true;
+	}
+	else {
+		chooseEnemy();
+	}
+}
+
+function chooseHero() {
+
+}
+
 //--End function definitions--------------------------------------//
 //--Program-------------------------------------------------------//
 
-chooseYourCharacter();
+loadheroes();
 
 //--End program---------------------------------------------------//
