@@ -13,12 +13,16 @@
 </head>
 <body>
 	
-<header class="jumbotron">This is the game</header>
+<header class="jumbotron">This is the game
+	<button class="btn start-button">Start</button>
+</header>
 
 <div class="container">
 	<div class="row">
 		<!-- Character display and selection area -->
-		<div class="col-md-12 heroes"></div>
+		<div class="col-md-12 heroes">
+			<h2></h2>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6 battlefield">
@@ -26,6 +30,11 @@
 				<div class="col-md-2 attacker hero-position"></div>
 				<div class="col-md-2 middle-of-the-battlefield"></div>
 				<div class="col-md-2 defender hero-position"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 fight-button-area">
+					<button class="btn fight-button">Fight</button>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-6 graveyard"></div>
