@@ -56,7 +56,7 @@ var character = [
 		'attackPower': 			0,
 		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-robin.png",
-		'battlePictureUrl':		"assets/images/battle-robin.webp",
+		'battlePictureUrl':		"assets/images/battle-robin.gif",
 		'arenaPictureUrl': 		"assets/images/arena-robin.png",
 		'isAlive': 				true,
 	}, 
@@ -90,6 +90,8 @@ function initialize() {
 		character[i].attackPower = character[i].baseAttackPower;
 		character[i].hp = character[i].baseHp;
 	}
+	$('.battlefield').hide();
+	$('.graveyard').hide();
 	loadheroes();
 	chooseHero();
 }
@@ -105,7 +107,21 @@ function loadheroes() {
 		heroText.text(`${character[i].name}: ${character[i].baseHp}`).addClass('menu-text');
 		heroContainer.addClass('hero-container').attr('hero-index', i).attr('is-user-character', false).attr('is-active-enemy', false).attr('can-click', true).append(heroPic).append(heroText);
 		$('.heroes').append(heroContainer);
+		$('.heroes').hide();
+		$('.heroes h2').hide();
+		$('.hero-container').hide();
 	}
+	//show character menu box
+	$('.heroes').show(1000,function() {
+		//show box text
+		$('.heroes h2').show(500, function() {
+			//Show character boxes
+			for (i=0; i < character.length; i++) {
+				$('.hero-container[hero-index='+i+']').show(500);
+			}	
+		})
+		
+	});
 	//Add click event
 	$('.hero-container').click(function() {
 		heroClick($(this));
@@ -121,10 +137,18 @@ function heroClick(clickedHero) {
 			clickedHero.attr('is-user-character', true).attr('can-click', false);
 			clickedHero.isUserCharacter = true;
 			isUserCharacterChosen = true;
-			moveHero(clickedHero, $('div.attacker'));
-			//Change to battle picture
-			clickedHero.children().attr("src", character[clickedHero.attr('hero-index')].battlePictureUrl);
-			chooseEnemy();
+			//Update battlefield background
+			$('.battlefield').css('background-image', 'url('+character[clickedHero.attr('hero-index')].arenaPictureUrl+')')
+			$('.battlefield').show(200, function() {
+				$('.graveyard').show(200, function() {
+					moveHero(clickedHero, $('div.attacker'));
+					//Change to battle picture
+					clickedHero.children().attr("src", character[clickedHero.attr('hero-index')].battlePictureUrl);
+					chooseEnemy();					
+				});
+
+			});
+
 		}
 		else {
 			//If enemy character is chosen
@@ -151,12 +175,6 @@ function chooseEnemy() {
 }
 function beginBattle() {
 	$('.heroes h2').text('FIGHT!');
-}
-
-function moveHero(from, to) {
-	var xOffset = to.offset().left - from.offset().left;
-	var yOffset = to.offset().top - from.offset().top;
-	from.animate({left: xOffset, top: yOffset});
 }
 
 function fight() {
@@ -196,6 +214,14 @@ function fight() {
 			userCharacter.attackPower = userCharacter.attackPower + userCharacter.baseAttackPower;
 		}
 	}
+}
+
+//Move the hero containers between each section when selected or defeated
+function moveHero(from, to) {
+	from.removeAttr('style');
+	var xOffset = to.offset().left - from.offset().left;
+	var yOffset = to.offset().top - from.offset().top;
+	from.animate({left: xOffset, top: yOffset});
 }
 
 // Change all 'can-click' attributes to either true or false
