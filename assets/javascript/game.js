@@ -2,21 +2,21 @@
 var character = [
 	{
 		'name': 				"Sans", 
-		'baseAttackPower': 		5,
-		'baseHp': 				50,
+		'baseAttackPower': 		0,
+		'baseHp': 				0,
 		'counterAttackPower': 	0,
 		'attackPower': 			0,
 		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-sans.jpg",
 		'battlePictureUrl':		"assets/images/battle-sans.gif",
-		'arenaPictureUrl': 		"assets/images/arena-sans.jpg",
+		'arenaPictureUrl': 		"assets/images/arena-sans.gif",
 		'isAlive': 				true,
 	}, 
 	{
 		'name': 				"Mario", 
 		'baseAttackPower': 		0,
-		'baseHp': 				100,
-		'counterAttackPower': 	4,
+		'baseHp': 				0,
+		'counterAttackPower': 	0,
 		'attackPower': 			0,
 		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-mario.jpg",
@@ -27,7 +27,7 @@ var character = [
 	{
 		'name': 				"Solid Snake", 
 		'baseAttackPower': 		0,
-		'baseHp': 				30,
+		'baseHp': 				0,
 		'counterAttackPower': 	0,
 		'attackPower': 			0,
 		'hp': 					0,
@@ -39,7 +39,7 @@ var character = [
 	{
 		'name': 				"Brook", 
 		'baseAttackPower': 		0,
-		'baseHp': 				40,
+		'baseHp': 				0,
 		'counterAttackPower': 	0,
 		'attackPower': 			0,
 		'hp': 					0,
@@ -51,7 +51,7 @@ var character = [
 	{
 		'name': 				"Robin", 
 		'baseAttackPower': 		0,
-		'baseHp': 				50,
+		'baseHp': 				0,
 		'counterAttackPower': 	0,
 		'attackPower': 			0,
 		'hp': 					0,
@@ -63,7 +63,7 @@ var character = [
 	{
 		'name': 				"Kuma", 
 		'baseAttackPower': 		0,
-		'baseHp': 				60,
+		'baseHp': 				0,
 		'counterAttackPower': 	0,
 		'attackPower': 			0,
 		'hp': 					0,
@@ -73,6 +73,17 @@ var character = [
 		'isAlive': 				true,
 	}
 ]
+
+var loopattacks = 	[12, 2, 8, 4, 6, 10];
+var loophps = 		[250, 300, 100, 50, 150, 200];
+var loopcounters = 	[40, 20, 10, 60, 30, 50];
+
+for (var i=0; i < character.length; i++) {
+	character[i].baseAttackPower = loopattacks[i];
+	character[i].baseHp = loophps[i];
+	character[i].counterAttackPower = loopcounters[i];
+
+}
 
 var isUserCharacterChosen;
 var userCharacter;
@@ -184,8 +195,11 @@ function fight() {
 	enemyContainer.children().text(`${activeEnemy.name}: ${activeEnemy.hp}`);
 	//Is the enemy dead?
 	if (activeEnemy.hp <= 0) {
+		//if statement to avoid console error on extra fight button presses
+		if (activeEnemy.isAlive === true) {
+			moveHero(enemyContainer, $('div.graveyard'));
+		}
 		activeEnemy.isAlive = false;
-		moveHero(enemyContainer, $('div.graveyard'));
 		enemyContainer.attr('is-active-enemy', false);
 		var anyOneLeft = false;
 		for (i=0; i < character.length; i++) {
