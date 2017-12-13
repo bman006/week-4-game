@@ -22,7 +22,7 @@ body {
 .jumbotron h1 {
 	float: left;
 	width: 80%;
-	margin: 0;
+	margin: 20px 0 0 0;
 	color: #ce1414;
     -moz-transform: scale(1) rotate(3deg) translate(0px, 0px) skew(15deg, 0deg);
     -webkit-transform: scale(1) rotate(3deg) translate(0px, 0px) skew(15deg, 0deg);
@@ -98,13 +98,13 @@ body {
 .hero-position {
 	height:200px;
 	width: 200px;
-	border: 2px dashed #000000;
 }
 .attacker {}
 .middle-of-the-battlefield {}
 .defender {
 	float: right;
 }
+
 /*--Graveyard Styling-------------------------------------------------------------------*/
 .graveyard {
 	display: none;
@@ -112,5 +112,3 @@ body {
 	padding: 15px 30px;
 	background-image: url('../images/graveyard.jpg');
 }
-
-footer {}

@@ -21,7 +21,7 @@ var character = [
 		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-mario.jpg",
 		'battlePictureUrl':		"assets/images/battle-mario.png",
-		'arenaPictureUrl': 		"assets/images/arena-mario.jpg",
+		'arenaPictureUrl': 		"assets/images/arena-mario.png",
 		'isAlive': 				true,
 	}, 
 	{
@@ -76,7 +76,7 @@ var character = [
 
 var loopattacks = 	[12, 2, 8, 4, 6, 10];
 var loophps = 		[250, 300, 100, 50, 150, 200];
-var loopcounters = 	[40, 20, 10, 60, 30, 50];
+var loopcounters = 	[12, 6, 3, 18, 9, 15];
 
 for (var i=0; i < character.length; i++) {
 	character[i].baseAttackPower = loopattacks[i];
