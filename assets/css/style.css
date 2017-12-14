@@ -16,7 +16,7 @@ body {
 	margin-bottom: 10px;
 	padding: 30px;
 	height: 130px;
-	background-color: black;
+	background-color: #000000;
 	z-index: 10000;
 }
 .jumbotron h1 {
@@ -30,14 +30,37 @@ body {
     -ms-transform: scale(1) rotate(3deg) translate(0px, 0px) skew(15deg, 0deg);
     transform: scale(1) rotate(3deg) translate(0px, 0px) skew(15deg, 0deg);
 }
-.start-button {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	height: 40px;
-	width: 80px;
+.btn{
+	box-shadow: 2px 2px #888888;
 	background-color: #ce1414;
 	color: #000000;
+}
+.start-button {
+/*	position: relative;
+	top: 50%;
+	transform: translateY(-50%);*/
+	height: 40px;
+	width: 80px;
+}
+.btn:active {
+	box-shadow: 0 0;
+	position: relative;
+	left: 2px;
+	top: 2px;
+}
+.fight-button {
+	
+}
+/*.fight-button:hover  {
+	transform: scale(0.9, 0.9);
+	background-color: #ce1414;
+	color: #ffffff;
+
+}*/
+.fight-button:active {
+	position: relative;
+	left: 2px;
+	top: 2px;
 }
 
 /*--Selection box styling-------------------------------------------------------------------*/
@@ -104,6 +127,9 @@ body {
 .defender {
 	float: right;
 }
+
+
+
 
 /*--Graveyard Styling-------------------------------------------------------------------*/
 .graveyard {

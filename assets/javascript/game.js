@@ -123,7 +123,7 @@ function loadheroes() {
 		$('.hero-container').hide();
 	}
 	//show character menu box
-	$('.heroes').show(1000,function() {
+	$('.heroes').show(500,function() {
 		//show box text
 		$('.heroes h2').show(500, function() {
 			//Show character boxes
