@@ -37,9 +37,6 @@ body {
 	outline: none !important;
 }
 .start-button {
-/*	position: relative;
-	top: 50%;
-	transform: translateY(-50%);*/
 	height: 40px;
 	width: 80px;
 }
@@ -52,12 +49,6 @@ body {
 .fight-button {
 	
 }
-/*.fight-button:hover  {
-	transform: scale(0.9, 0.9);
-	background-color: #ce1414;
-	color: #ffffff;
-
-}*/
 .fight-button:active {
 	position: relative;
 	left: 2px;

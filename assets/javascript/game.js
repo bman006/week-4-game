@@ -169,9 +169,10 @@ function fight() {
 	if (activeEnemy.hp <= 0) {
 		//if statement to avoid console error on extra fight button presses
 		if (activeEnemy.isAlive === true) {
+			activeEnemy.isAlive = false;
 			moveHero(enemyContainer, $('div.graveyard'));
 		}
-		activeEnemy.isAlive = false;
+		
 		enemyContainer.attr('is-active-enemy', false);
 		var anyOneLeft = false;
 		for (i=0; i < character.length; i++) {
@@ -204,9 +205,16 @@ function fight() {
 
 //Move the hero containers between each section when selected or defeated
 function moveHero(from, to) {
-	var xOffset = to.offset().left - from.attr('xZero');
-	var yOffset = to.offset().top - from.attr('yZero');
+	var deadOffset = 0;
+	if (character[from.attr('hero-index')].isAlive === false) {
+		deadOffset = 25 * from.attr('hero-index');
+	}
+	var xOffset = to.offset().left - from.attr('xZero') + deadOffset*1.5;
+	var yOffset = to.offset().top - from.attr('yZero') + deadOffset;
 	from.animate({left: xOffset, top: yOffset});
+	if (character[from.attr('hero-index')].isAlive === false) {
+		from.css({transform: 'scale(0.75)'});
+	}
 }
 
 // Change all 'can-click' attributes to either true or false
