@@ -2,87 +2,55 @@
 var character = [
 	{
 		'name': 				"Sans", 
-		'baseAttackPower': 		0,
-		'baseHp': 				0,
-		'counterAttackPower': 	0,
-		'attackPower': 			0,
-		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-sans.jpg",
 		'battlePictureUrl':		"assets/images/battle-sans.gif",
 		'arenaPictureUrl': 		"assets/images/arena-sans.gif",
-		'isAlive': 				true,
 	}, 
 	{
 		'name': 				"Mario", 
-		'baseAttackPower': 		0,
-		'baseHp': 				0,
-		'counterAttackPower': 	0,
-		'attackPower': 			0,
-		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-mario.jpg",
 		'battlePictureUrl':		"assets/images/battle-mario.png",
 		'arenaPictureUrl': 		"assets/images/arena-mario.png",
-		'isAlive': 				true,
 	}, 
 	{
 		'name': 				"Solid Snake", 
-		'baseAttackPower': 		0,
-		'baseHp': 				0,
-		'counterAttackPower': 	0,
-		'attackPower': 			0,
-		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-snake.jpg",
 		'battlePictureUrl':		"assets/images/battle-snake.png",
 		'arenaPictureUrl': 		"assets/images/arena-snake.jpg",
-		'isAlive': 				true,
 	}, 
 	{
 		'name': 				"Brook", 
-		'baseAttackPower': 		0,
-		'baseHp': 				0,
-		'counterAttackPower': 	0,
-		'attackPower': 			0,
-		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-brook.png",
 		'battlePictureUrl':		"assets/images/battle-brook.jpg",
 		'arenaPictureUrl': 		"assets/images/arena-brook.jpg",
-		'isAlive': 				true,
 	}, 
 	{
 		'name': 				"Robin", 
-		'baseAttackPower': 		0,
-		'baseHp': 				0,
-		'counterAttackPower': 	0,
-		'attackPower': 			0,
-		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-robin.png",
 		'battlePictureUrl':		"assets/images/battle-robin.gif",
 		'arenaPictureUrl': 		"assets/images/arena-robin.png",
-		'isAlive': 				true,
 	}, 
 	{
 		'name': 				"Kuma", 
-		'baseAttackPower': 		0,
-		'baseHp': 				0,
-		'counterAttackPower': 	0,
-		'attackPower': 			0,
-		'hp': 					0,
 		'menuPictureUrl': 		"assets/images/menu-kuma.jpg",
 		'battlePictureUrl':		"assets/images/battle-kuma.png",
 		'arenaPictureUrl': 		"assets/images/arena-kuma.png",
-		'isAlive': 				true,
 	}
 ]
 
-var loopattacks = 	[12, 2, 8, 4, 6, 10];
-var loophps = 		[250, 300, 100, 50, 150, 200];
-var loopcounters = 	[12, 6, 3, 18, 9, 15];
+//Arrays for base stats
+var baseAttackPower = 	[12, 2, 8, 4, 6, 10];
+var baseHp = 		[250, 300, 100, 50, 150, 200];
+var counterAttackPower = 	[12, 6, 3, 18, 9, 15];
 
+//Assign remaining properties to all objects
 for (var i=0; i < character.length; i++) {
-	character[i].baseAttackPower = loopattacks[i];
-	character[i].baseHp = loophps[i];
-	character[i].counterAttackPower = loopcounters[i];
-
+	character[i].attackPower = 0;
+	character[i].hp = 0;
+	character[i].baseAttackPower = baseAttackPower[i];
+	character[i].baseHp = baseHp[i];
+	character[i].counterAttackPower = counterAttackPower[i];
+	character[i].isAlive = true;
 }
 
 var isUserCharacterChosen;
@@ -121,6 +89,7 @@ function loadheroes() {
 		$('.heroes').hide();
 		$('.heroes h2').hide();
 		$('.hero-container').hide();
+
 	}
 	//show character menu box
 	$('.heroes').show(500,function() {
@@ -129,6 +98,9 @@ function loadheroes() {
 			//Show character boxes
 			for (i=0; i < character.length; i++) {
 				$('.hero-container[hero-index='+i+']').show(500);
+				//store initial offset coordinates
+				$('.hero-container[hero-index='+i+']').attr('xZero', $('.hero-container[hero-index='+i+']').offset().left);
+				$('.hero-container[hero-index='+i+']').attr('yZero', $('.hero-container[hero-index='+i+']').offset().top);
 			}	
 		})
 		
@@ -232,9 +204,8 @@ function fight() {
 
 //Move the hero containers between each section when selected or defeated
 function moveHero(from, to) {
-	from.removeAttr('style');
-	var xOffset = to.offset().left - from.offset().left;
-	var yOffset = to.offset().top - from.offset().top;
+	var xOffset = to.offset().left - from.attr('xZero');
+	var yOffset = to.offset().top - from.attr('yZero');
 	from.animate({left: xOffset, top: yOffset});
 }
 

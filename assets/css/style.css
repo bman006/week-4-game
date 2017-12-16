@@ -30,10 +30,11 @@ body {
     -ms-transform: scale(1) rotate(3deg) translate(0px, 0px) skew(15deg, 0deg);
     transform: scale(1) rotate(3deg) translate(0px, 0px) skew(15deg, 0deg);
 }
-.btn{
+.btn {
 	box-shadow: 2px 2px #888888;
 	background-color: #ce1414;
 	color: #000000;
+	outline: none !important;
 }
 .start-button {
 /*	position: relative;
